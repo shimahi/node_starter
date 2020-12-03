@@ -33,8 +33,7 @@ yarn add -D typescript webpack webpack-cli eslint jest prettier \
   lint-staged husky dotenv \
   @types/express
 
-
-yarn add express
+yarn add express apollo-server-express
 
 ## write README
 touch README.md
