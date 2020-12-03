@@ -1,0 +1,23 @@
+{
+  "name": "node_app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest",
+    "build": "webpack --mode production",
+    "execute": "webpack && node dist/index.js",
+    "typecheck": "tsc -p . --noEmit",
+    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}
