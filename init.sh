@@ -27,10 +27,14 @@ git init &
 
 
 yarn add -D typescript webpack webpack-cli eslint jest prettier \
-  ts-jest ts-loader \
+  ts-jest ts-loader ts-node ts-node-dev \
   eslint-{config-prettier,plugin-import,plugin-jest,plugin-prettier} \
   @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser \
-  lint-staged husky
+  lint-staged husky dotenv \
+  @types/express
+
+
+yarn add express
 
 ## write README
 touch README.md
