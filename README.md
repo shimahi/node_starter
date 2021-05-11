@@ -1,10 +1,10 @@
 # Node.js STARTER
 
-Node.js アプリの環境構築スクリプト
+Node.jsの簡易リポジトリ作成キット
 
 
 動作環境
-Node.js `^14.3`
+Node.js `^15.5.1`
 Yarn `^1.22.4`
 
 使用方法

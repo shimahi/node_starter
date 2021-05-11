@@ -14,26 +14,23 @@ cd ../"$1"
 ## setting git
 rm -rf .git
 rm -f .gitignore README.md
-touch .gitignore .env
+touch .gitignore
 echo 'node_modules
 dist/*
 yarn-error.log
 .DS_Store
 .vscode
-.env
+.envrc
 src/types/graphql.ts
 ' >>.gitignore
 git init &
 
 
-yarn add -D typescript webpack webpack-cli eslint jest prettier \
-  ts-jest ts-loader ts-node ts-node-dev \
+yarn add -D typescript esbuild eslint jest prettier \
+  ts-jest glob \
   eslint-{config-prettier,plugin-import,plugin-jest,plugin-prettier} \
   @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser \
-  lint-staged husky dotenv \
-  @types/express
-
-yarn add express apollo-server-express
+  lint-staged husky \
 
 ## write README
 touch README.md
@@ -44,3 +41,6 @@ mkdir src/__tests__
 
 ## remove this script
 find ./ -name "init.sh" | xargs rm
+
+## allow env files
+direnv allow

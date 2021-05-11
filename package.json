@@ -5,9 +5,9 @@
   "license": "MIT",
   "scripts": {
     "test": "jest",
-    "dev": "ts-node-dev --files -r tsconfig-paths/register -r dotenv/config src/index.ts",
-    "build": "webpack --mode production",
-    "start": "webpack --mode production && node dist/index.js",
+    "build": "node ./esbuild.js",
+    "build:exec": "node ./esbuild.js && node dist/index.js",
+    "watch": "node ./esbuild.watch.js",
     "typecheck": "tsc -p . --noEmit",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix"
   },
