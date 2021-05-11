@@ -5,9 +5,10 @@
   "license": "MIT",
   "scripts": {
     "test": "jest",
-    "build": "node ./esbuild.js",
-    "build:exec": "node ./esbuild.js && node dist/index.js",
-    "watch": "node ./esbuild.watch.js",
+    "watch": "node ./esbuild.js development watch",
+    "build": "node ./esbuild.js production",
+    "build:dev": "node ./esbuild.js development",
+    "build:exec": "node ./esbuild.js production && node dist/index.js",
     "typecheck": "tsc -p . --noEmit",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix"
   },
