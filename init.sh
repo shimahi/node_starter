@@ -29,7 +29,7 @@ git init &
 yarn add -D typescript esbuild eslint jest prettier \
   ts-jest glob \
   eslint-{config-prettier,plugin-import,plugin-jest,plugin-prettier} \
-  @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser husky
+  @types/{node,jest} @typescript-eslint/eslint-plugin @typescript-eslint/parser husky
 
 ## write README
 touch README.md
@@ -37,9 +37,6 @@ echo "# $1" >>README.md
 
 ## setup test folder
 mkdir src/__tests__
-
-## remove this script
-find ./ -name "init.sh" | xargs rm
 
 ## allow env files
 direnv allow
@@ -50,3 +47,23 @@ npx husky-init
 
 rm -f .husky/pre-commit
 mv pre-commit .husky
+
+
+
+echo -n "Reactの環境構築を行いますか?[y/N]: "
+read ANS
+
+case $ANS in
+  [Yy]* )
+    # ここに「Yes」の時の処理を書く
+    source ./react/react.sh
+    ;;
+  * )
+    # ここに「No」の時の処理を書く
+    rm -rf react
+    ;;
+esac
+
+
+## remove this script
+find ./ -name "init.sh" | xargs rm

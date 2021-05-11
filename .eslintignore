@@ -3,3 +3,4 @@ node_modules/
 .eslintrc.js
 esbuild.js
 dist/*.js
+graphql.ts
