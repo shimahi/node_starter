@@ -3,7 +3,14 @@ const { argv } = require('process')
 const path = require('path')
 const glob = require('glob')
 
+const define = {}
+
+for (const k in process.env) {
+  define[`process.env.${k}`] = JSON.stringify(process.env[k])
+}
+
 build({
+  define,
   entryPoints: glob.sync(path.resolve(__dirname, 'src/index.tsx')),
   minify: argv[2] === 'production',
   bundle: true,
