@@ -29,8 +29,7 @@ git init &
 yarn add -D typescript esbuild eslint jest prettier \
   ts-jest glob \
   eslint-{config-prettier,plugin-import,plugin-jest,plugin-prettier} \
-  @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser \
-  lint-staged husky \
+  @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser husky
 
 ## write README
 touch README.md
@@ -44,3 +43,10 @@ find ./ -name "init.sh" | xargs rm
 
 ## allow env files
 direnv allow
+
+## set husky
+npx husky install
+npx husky-init
+
+rm -f .husky/pre-commit
+mv pre-commit .husky

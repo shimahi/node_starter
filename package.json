@@ -10,16 +10,7 @@
     "build:dev": "node ./esbuild.js development",
     "build:exec": "node ./esbuild.js production && node dist/index.js",
     "typecheck": "tsc -p . --noEmit",
-    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix"
-  },
-  "lint-staged": {
-    "src/**/*.{ts,tsx}": [
-      "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
+    "prepare": "husky install"
   }
 }
