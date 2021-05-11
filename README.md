@@ -13,3 +13,8 @@ Yarn `^1.22.4`
 ```
 $ . ./init.sh your_app_name
 ```
+
+途中、Reactの環境を作るかどうか問われるので、ReactのSandboxとして利用する場合はyを、そうでない場合はNまたは空欄 + Enterを押してください
+```
+Reactの環境構築を行いますか?[y/N]: 
+```
