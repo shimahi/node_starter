@@ -4,3 +4,4 @@ node_modules/
 esbuild.js
 dist/*.js
 graphql.ts
+codegen.js

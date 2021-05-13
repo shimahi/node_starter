@@ -1,9 +1,11 @@
-require('dotenv').config({ path: '.env.local' })
+const {
+  publicRuntimeConfig: { apiEndpoint },
+} = require('./runtime.config')
 
 module.exports = {
   schema: [
     {
-      [`${process.env.GRAPHQL_ENDPOINT}`]: {},
+      [`${apiEndpoint}`]: {},
     },
   ],
   documents: './src/graphql/*.graphql',

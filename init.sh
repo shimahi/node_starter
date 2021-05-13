@@ -13,9 +13,24 @@ case $ANS in
   [Yy]* )
       echo -n "Next.jsの環境構築を行いますか?[y/N]: "
       read ANS2
+
+      case $ANS2 in
+        [Yy]* )
+            echo -n "GraphQLの環境構築を行いますか?[y/N]: "
+            read ANS3
+          ;;
+        * ) #Next.jsを使用しない場合
+            rm -rf react/next
+            rm -rf react/graphql
+            rm -f package.json
+            mv package.vanilla.json package.json
+          ;;
+      esac
     ;;
-  * )
+  * ) # Reactを使用しない場合
     rm -rf react
+    rm -f package.json
+    mv package.vanilla.json package.json
     ;;
 esac
 
@@ -24,6 +39,9 @@ initialDir=basename$(pwd)
 initialDirVal=$(basename ${initialDir})
 mv ../${initialDirVal} ../"$1"
 cd ../"$1"
+
+## allow env files
+direnv allow
 
 ## setting git
 rm -rf .git
@@ -53,9 +71,6 @@ echo "# $1" >>README.md
 ## setup test folder
 mkdir src/__tests__
 
-## allow env files
-direnv allow
-
 ## set husky
 npx husky install
 npx husky-init
@@ -67,17 +82,11 @@ case $ANS in
   [Yy]* )
     case $ANS2 in
       [Yy]* )
+        rm -f package.vanilla.json
         # add Next.js deps
-        yarn add next graphql @apollo/client
+        yarn add next
         # add Next.js devdeps
         yarn add -D webpack esbuild-loader
-
-        # add graphql endpoint
-        echo "GRAPHQL_ENDPOINT=http://localhost:3000/api/graphql
-        " >>.env.local
-        ;;
-      * )
-        rm -rf react/next
         ;;
     esac
     # add react deps
@@ -92,7 +101,6 @@ case $ANS in
     mv react/tsconfig.json .
     mv react/esbuild.js .
     mv react/.eslintrc.js .
-    mv react/codegen.js .
     mkdir dist
     mv react/index.html dist
     mv react src
@@ -105,27 +113,47 @@ case $ANS in
         mv src/next/next-env.d.ts .
         mv src/next/pages src
         mv src/next/components src
+        mv src/next/store.tsx src
         rm -rf dist
-        rm -rf next
-        rm src/index.tsx
-
-        npx npm-add-script -k dev -v "next dev"
-        npx npm-add-script -k start -v "next start"
-        npx npm-add-script -k export -v "next export"
+        rm -rf src/next
+        rm -f src/index.tsx
 
         cat tsconfig.json | jq '.include = ["src", "next-env.d.ts"]' > temp.json
         rm -f tsconfig.json
         mv temp.json tsconfig.json
-        ;;
-      * )
+        case $ANS3 in
+          [Yy]* )
+            # add graphql deps
+            yarn add graphql @apollo/client
+            yarn add -D @graphql-codegen/{cli,typescript,typescript-operations,typescript-react-apollo}
+
+            rm -f src/pages/_app.tsx
+            mv src/pages/_app_withProvider.tsx src/pages/_app.tsx
+            mkdir src/types
+            rm -f runtime.config.js
+            mv src/graphql/codegen.js .
+            mv src/graphql/runtime.config.js .
+
+            # add graphql endpoint
+            echo "export GRAPHQL_ENDPOINT=http://localhost:3000/api/graphql
+" >>.envrc
+            npx npm-add-script -k codegen -v "graphql-codegen"
+            ;;
+          * ) # GraphQLを使わない場合
+            rm -f src/pages/_app_withProvider.tsx
+            rm -f src/store.tsx
+            rm -f codegen.js
+            rm -rf src/graphql
+            ;;
+        esac
         ;;
     esac
-
-    ;;
-  * )
     ;;
 esac
 
 
 ## remove this script
 find ./ -name "init.sh" | xargs rm
+
+## allow env files
+direnv allow

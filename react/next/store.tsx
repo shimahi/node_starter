@@ -3,13 +3,13 @@ import { ApolloClient, ApolloProvider, InMemoryCache, HttpLink } from '@apollo/c
 import getConfig from 'next/config'
 
 const {
-  publicRuntimeConfig: { GRAPHQL_ENDPOINT },
+  publicRuntimeConfig: { apiEndpoint },
 } = getConfig()
 
 const cache = new InMemoryCache()
 
 const link = new HttpLink({
-  uri: GRAPHQL_ENDPOINT,
+  uri: apiEndpoint,
 })
 
 const client = new ApolloClient({
