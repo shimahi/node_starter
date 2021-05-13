@@ -1,5 +1,8 @@
+import getConfig from 'next/config'
 import { Layout } from 'components/Layout'
 import { Box } from '@chakra-ui/react'
+
+const { publicRuntimeConfig, serverRuntimeConfig } = getConfig()
 
 export default function Index() {
   return (
@@ -19,4 +22,13 @@ export default function Index() {
       </Box>
     </Layout>
   )
+}
+
+export async function getStaticProps() {
+  console.log(publicRuntimeConfig)
+  console.log(serverRuntimeConfig)
+
+  return {
+    props: {},
+  }
 }

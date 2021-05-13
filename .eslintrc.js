@@ -24,6 +24,7 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'no-nested-ternary': 'off',
     'no-unused-vars': 'off',
+    'arrow-body-style': 'off',
     // @typescript-eslint
     '@typescript-eslint/adjacent-overload-signatures': 'warn',
     '@typescript-eslint/no-unnecessary-type-assertion': 'error',
