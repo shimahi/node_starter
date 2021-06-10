@@ -5,16 +5,18 @@ module.exports = {
     es6: true,
     jest: true,
   },
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
+  extends: ['airbnb-typescript', 'plugin:@typescript-eslint/recommended', 'plugin:react/recommended', 'prettier'],
   parserOptions: {
     project: './tsconfig.json',
-    ecmaVersion: 2020,
+    ecmaVersion: 2018,
     sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
-  plugins: ['@typescript-eslint', 'import', 'prettier', 'import'],
+  plugins: ['@typescript-eslint', 'import', 'jsx-a11y', 'prettier', 'react', 'react-hooks'],
   rules: {
     // eslint
-    'no-console': 'warn',
     'global-require': 'off',
     'consistent-return': 'off',
     'newline-before-return': 'error',
@@ -26,8 +28,6 @@ module.exports = {
     'no-unused-vars': 'off',
     'arrow-body-style': 'off',
     // @typescript-eslint
-    '@typescript-eslint/adjacent-overload-signatures': 'warn',
-    '@typescript-eslint/no-unnecessary-type-assertion': 'error',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/prefer-interface': 'off',
@@ -67,7 +67,41 @@ module.exports = {
     // import
     'import/extensions': 'off',
     'import/prefer-default-export': 'off',
-    'import/no-extraneous-dependencies': ['error'],
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: ['src/**/*.stories.tsx'],
+        peerDependencies: false,
+      },
+    ],
+    // jsx-a11y
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/no-noninteractive-element-interactions': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
+    'jsx-a11y/img-redundant-alt': 'off',
+    'jsx-a11y/anchor-is-valid': 'off',
+    'jsx-a11y/label-has-associated-control': 'off',
+    'jsx-a11y/interactive-supports-focus': 'off',
+    // react
+    'react/react-in-jsx-scope': 'off',
+    'react/jsx-filename-extension': [
+      'error',
+      {
+        extensions: ['.jsx', '.tsx'],
+      },
+    ],
+    'react/jsx-one-expression-per-line': 'warn',
+    'react/jsx-wrap-multilines': 'off',
+    'react/no-array-index-key': 'off',
+    'react/display-name': 'off',
+    'react/button-has-type': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'react/jsx-one-expression-per-line': 'off',
+    'react/require-default-props': 'off',
+    'react/prop-types': 'off',
+    // react-hooks
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'error',
   },
   overrides: [
     {

@@ -2,7 +2,11 @@
   "compilerOptions": {
     "target": "es2020",
     "module": "commonjs",
-    "lib": ["esnext", "DOM", "DOM.Iterable"],
+    "lib": [
+      "esnext",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "moduleResolution": "node",
     "jsx": "preserve",
     "allowJs": true,
@@ -11,11 +15,25 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "src",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": [
+        "src/*"
+      ]
     },
-    "typeRoots": ["src/types", "node_modules/@types"],
-    "resolveJsonModule": true
+    "typeRoots": [
+      "src/types",
+      "node_modules/@types"
+    ],
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "isolatedModules": true
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    "src",
+    "next-env.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }
