@@ -65,8 +65,6 @@ node dist/index.js
 ### 2. React開発
 `src/index.tsx` をエントリーポイントとしてReactのコードを記述し、esbuildを用いてビルドします。ビルドが行われると、`dist/`下にindex.jsが出力されるので、予め用意してある `dist/index.html` をブラウズすることでアプリが確認できます。
 
-スタイリングは [Chakra-ui](https://chakra-ui.com/)を用いて行います。他の方法でスタイルを行う場合適宜アンインストールしてください。
-
 Live Serverなどでローカルサーバを立てつつ監視ビルドを行うことで、HMRライクな開発が可能となります。
 
 ```
