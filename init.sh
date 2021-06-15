@@ -18,6 +18,29 @@ case $ANS in
         [Yy]* )
             echo -n "GraphQLの環境構築を行いますか?[y/N]: "
             read ANS3
+
+            echo -n "CSSライブラリを選択してください"
+            select VAR in tailwindcss Chakra-UI
+            do
+                if [ "$VAR" = "tailwindcss" ]; then
+                yarn add twin.macro @emotion/{css,react,server,styled}
+                yarn add -D babel-loader babel-plugin-{macros,twin} @emotion/{babel-plugin,babel-preset-css-prop} @babel/{core,plugin-transform-runtime,preset-env,preset-react}
+                rm -f react/next/store_chakra.tsx
+                rm -f react/next/store_chakra_graphql.tsx
+                mv react/next/babel.config.js .
+                mv react/next/tailwind.config.js .
+                break
+                fi
+                if [ "$VAR" = "Chakra-UI" ]; then
+                yarn add @chakra-ui/react @emotion/{react,styled} framer-motion@^4
+                rm -f react/next/store_tailwind.tsx
+                rm -f react/next/store_tailwind_graphql.tsx
+                rm -rf react/next/babel.config.js
+                rm -rf react/next/types/emotion.d.ts
+                rm -rf react/next/types/twin.d.ts
+                break
+                fi
+            done
           ;;
         * ) #Next.jsを使用しない場合
             rm -rf react/next
@@ -86,11 +109,11 @@ case $ANS in
         # add Next.js deps
         yarn add next
         # add Next.js devdeps
-        yarn add -D webpack esbuild-loader
+        yarn add -D webpack file-loader url-loader
         ;;
     esac
     # add react deps
-    yarn add react react-dom ress @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^4 react-test-renderer @testing-library/react
+    yarn add react react-dom ress react-test-renderer @testing-library/react
     # add react devdeps
     yarn add -D @types/{react,react-dom,react-test-renderer} \
     eslint-config-airbnb-typescript eslint-plugin-{jsx-a11y,react,react-hooks} \
@@ -112,8 +135,12 @@ case $ANS in
         mv src/next/runtime.config.js .
         mv src/next/next-env.d.ts .
         mv src/next/pages src
+        mv src/next/types src
         mv src/next/components src
-        mv src/next/store.tsx src
+        mv src/next/store_chakra.tsx src
+        mv src/next/store_chakra_graphql.tsx src
+        mv src/next/store_tailwind.tsx src
+        mv src/next/store_tailwind_graphql.tsx src
         rm -rf dist
         rm -rf src/next
         rm -f src/index.tsx
@@ -127,12 +154,13 @@ case $ANS in
             yarn add graphql @apollo/client
             yarn add -D @graphql-codegen/{cli,typescript,typescript-operations,typescript-react-apollo}
 
-            rm -f src/pages/_app.tsx
-            mv src/pages/_app_withProvider.tsx src/pages/_app.tsx
-            mkdir src/types
             rm -f runtime.config.js
             mv src/graphql/codegen.js .
             mv src/graphql/runtime.config.js .
+            mv src/store_chakra_graphql.tsx src/store.tsx
+            mv src/store_tailwind_graphql.tsx src/store.tsx
+            rm -f src/store_chakra.tsx
+            rm -f src/store_tailwind.tsx
 
             # add graphql endpoint
             echo "export GRAPHQL_ENDPOINT=http://localhost:3000/api/graphql
@@ -140,10 +168,12 @@ case $ANS in
             npx npm-add-script -k codegen -v "graphql-codegen"
             ;;
           * ) # GraphQLを使わない場合
-            rm -f src/pages/_app_withProvider.tsx
-            rm -f src/store.tsx
             rm -f codegen.js
             rm -rf src/graphql
+            rm -f src/store_chakra_graphql.tsx
+            rm -f src/store_tailwind_graphql.tsx
+            mv src/store_chakra.tsx src/store.tsx
+            mv src/store_tailwind.tsx src/store.tsx
             ;;
         esac
         ;;

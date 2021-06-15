@@ -1,24 +1,5 @@
 const path = require('path')
-const { ESBuildMinifyPlugin } = require('esbuild-loader')
 const { serverRuntimeConfig, publicRuntimeConfig } = require('./runtime.config')
-
-function useEsbuildMinify(config, options) {
-  const terserIndex = config.optimization.minimizer.findIndex(
-    (minimizer) => minimizer.constructor.name === 'TerserPlugin',
-  )
-  if (terserIndex > -1) {
-    config.optimization.minimizer.splice(terserIndex, 1, new ESBuildMinifyPlugin(options))
-  }
-}
-
-function useEsbuildLoader(config, options) {
-  const jsLoader = config.module.rules.find((rule) => rule.test && rule.test.test('.js'))
-
-  if (jsLoader) {
-    jsLoader.use.loader = 'esbuild-loader'
-    jsLoader.use.options = options
-  }
-}
 
 module.exports = (phase, { defaultConfig }) => {
   return {
@@ -35,10 +16,21 @@ module.exports = (phase, { defaultConfig }) => {
         }),
       )
 
-      useEsbuildMinify(config)
-      useEsbuildLoader(config, {
-        loader: 'tsx',
-        target: 'es2020',
+      config.module.rules.push({
+        test: /\.(gif|png|jpg|eot|wof|woff|ttf|svg)$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 100000,
+            fallback: {
+              loader: 'file-loader',
+              options: {
+                publicPath: '/_next/static/images',
+                outputPath: 'static/images',
+              },
+            },
+          },
+        },
       })
 
       config.resolve.alias['@'] = path.join(__dirname, 'src')

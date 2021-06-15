@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 import { ApolloClient, ApolloProvider, InMemoryCache, HttpLink } from '@apollo/client'
+import { ChakraProvider } from '@chakra-ui/react'
 import getConfig from 'next/config'
 
 const {
@@ -21,6 +22,10 @@ type AppProviderProps = {
   children: ReactNode
 }
 
-const AppProvider = ({ children }: AppProviderProps) => <ApolloProvider client={client}>{children}</ApolloProvider>
+const AppProvider = ({ children }: AppProviderProps) => (
+  <ApolloProvider client={client}>
+    <ChakraProvider>{children}</ChakraProvider>
+  </ApolloProvider>
+)
 
 export default AppProvider
