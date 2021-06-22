@@ -3,13 +3,7 @@ const { serverRuntimeConfig, publicRuntimeConfig } = require('./runtime.config')
 
 module.exports = (phase, { defaultConfig }) => {
   return {
-    webpack: (config, { isServer, webpack }) => {
-      if (!isServer) {
-        config.node = {
-          fs: 'empty',
-        }
-      }
-
+    webpack: (config, { webpack }) => {
       config.plugins.push(
         new webpack.ProvidePlugin({
           React: 'react',
