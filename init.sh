@@ -109,7 +109,7 @@ case $ANS in
         # add Next.js deps
         yarn add next
         # add Next.js devdeps
-        yarn add -D webpack file-loader url-loader
+        yarn add -D webpack eslint-config-next file-loader url-loader
         ;;
     esac
     # add react deps
