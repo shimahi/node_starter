@@ -23,7 +23,7 @@ case $ANS in
             select VAR in tailwindcss Chakra-UI
             do
                 if [ "$VAR" = "tailwindcss" ]; then
-                yarn add twin.macro @emotion/{css,react,server,styled}
+                yarn add twin.macro @emotion/{css,react,server,styled} ress
                 yarn add -D babel-loader babel-plugin-{macros,twin} @emotion/{babel-plugin,babel-preset-css-prop} @babel/{core,plugin-transform-runtime,preset-env,preset-react}
                 rm -f react/next/store_chakra.tsx
                 rm -f react/next/store_chakra_graphql.tsx
