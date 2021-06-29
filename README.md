@@ -5,9 +5,8 @@ Node.jsアプリの環境構築を行うシェルスクリプトです。
 TypeScript, ESLint, prettier, huskyを使用し、以下のNode.js環境を作ることができます。
 
 1. Node.jsでのバッチ処理開発環境
-2. ReactによるSPA開発環境
-3. Next.jsによるWeb開発環境
-4. 3に加えてApollo Clientとgraphql-codegenを利用するGraphQLクライアント環境
+2. React(Next.js)によるWeb開発環境
+3. 3に加えてApollo Clientとgraphql-codegenを利用するGraphQLクライアント環境
 
 パッケージマネージャはYarn、ビルドツールにはesbuildを用いています(next.jsの場合はwebpackと併用)
 
@@ -39,9 +38,8 @@ $ source ./init.sh YOUR_APP_NAME
 途中、それぞれの環境を作るかどうか問われるので、yまたはN + Enterを押してください
 ```
 Reactの環境構築を行いますか?[y/N]:  y # Nの場合 1.
-Next.jsの環境構築を行いますか?[y/N]:  y # Nの場合 2.
-GraphQLの環境構築を行いますか?[y/N]:  y # Nの場合 3.
-# 全て y の場合 4.が作成される
+GraphQLの環境構築を行いますか?[y/N]:  y # Nの場合 2.
+# 全て y の場合 3.が作成される
 ```
 
 
@@ -81,7 +79,7 @@ $ open dist/index.html  #（或いは、ローカルのhttpサーバを立てて
 ```
 
 
-### 3. Next.js開発
+### 2. Next.js開発
 nextを用いてローカルサーバを起動し、`src/` 下にReact(Next.js)のコードを記述し開発を行ってください。
 
 ```
