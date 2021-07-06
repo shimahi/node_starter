@@ -125,10 +125,6 @@ case $ANS in
     rm -rf src/next
     rm -f src/index.tsx
 
-    cat tsconfig.json | jq '.include = ["src", "next-env.d.ts"]' > temp.json
-    rm -f tsconfig.json
-    mv temp.json tsconfig.json
-
     case $ANS2 in
       [Yy]* )
         # add graphql deps
