@@ -13,29 +13,10 @@ case $ANS in
   [Yy]* )
     echo -n "GraphQLの環境構築を行いますか?[y/N]: "
       read ANS2
-
-      echo -n "CSSライブラリを選択してください"
-      select VAR in tailwindcss Chakra-UI
-      do
-          if [ "$VAR" = "tailwindcss" ]; then
-          yarn add twin.macro @emotion/{css,react,server,styled} ress
-          yarn add -D babel-loader babel-plugin-{macros,twin} @emotion/{babel-plugin,babel-preset-css-prop} @babel/{core,plugin-transform-runtime,preset-env,preset-react}
-          rm -f react/store_chakra.tsx
-          rm -f react/store_chakra_graphql.tsx
-          mv react/babel.config.js .
-          mv react/tailwind.config.js .
-          break
-          fi
-          if [ "$VAR" = "Chakra-UI" ]; then
-          yarn add @chakra-ui/react @emotion/{css,react,styled,server} framer-motion@^4
-          rm -f react/store_tailwind.tsx
-          rm -f react/store_tailwind_graphql.tsx
-          rm -rf react/babel.config.js
-          rm -rf react/types/emotion.d.ts
-          rm -rf react/types/twin.d.ts
-          break
-          fi
-      done
+      yarn add twin.macro @emotion/{css,react,server,styled} ress
+      yarn add -D babel-loader babel-plugin-{macros,twin} @emotion/{babel-plugin,babel-preset-css-prop} @babel/{core,plugin-transform-runtime,preset-env,preset-react}
+      mv react/babel.config.js .
+      mv react/tailwind.config.js .
     ;;
   * ) # React(Next.js)を使用しない場合
     rm -rf react
@@ -117,10 +98,6 @@ case $ANS in
     mv src/pages src
     mv src/types src
     mv src/components src
-    mv src/store_chakra.tsx src
-    mv src/store_chakra_graphql.tsx src
-    mv src/store_tailwind.tsx src
-    mv src/store_tailwind_graphql.tsx src
     rm -rf dist
     rm -rf src/next
     rm -f src/index.tsx
@@ -134,10 +111,8 @@ case $ANS in
         rm -f runtime.config.js
         mv src/graphql/codegen.js .
         mv src/graphql/runtime.config.js .
-        mv src/store_chakra_graphql.tsx src/store.tsx
-        mv src/store_tailwind_graphql.tsx src/store.tsx
-        rm -f src/store_chakra.tsx
-        rm -f src/store_tailwind.tsx
+        rm -f src/_app.tsx
+        mv src/pages/_app_graphql.tsx src/pages/_app.tsx
 
         # add graphql endpoint
         echo "export GRAPHQL_ENDPOINT=http://localhost:3000/api/graphql
@@ -147,10 +122,7 @@ case $ANS in
       * ) # GraphQLを使わない場合
         rm -f codegen.js
         rm -rf src/graphql
-        rm -f src/store_chakra_graphql.tsx
-        rm -f src/store_tailwind_graphql.tsx
-        mv src/store_chakra.tsx src/store.tsx
-        mv src/store_tailwind.tsx src/store.tsx
+        rm -f src/pages/_app_graphql.tsx
         ;;
     esac
   ;;

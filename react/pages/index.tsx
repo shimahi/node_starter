@@ -1,9 +1,5 @@
-import { Layout } from 'components/Layout'
+import { IndexTemplate as Template } from 'components/templates'
 
 export default function Index() {
-  return (
-    <Layout>
-      <article>Hello, Next!</article>
-    </Layout>
-  )
+  return <Template />
 }
