@@ -111,7 +111,7 @@ case $ANS in
         rm -f runtime.config.js
         mv src/graphql/codegen.js .
         mv src/graphql/runtime.config.js .
-        rm -f src/_app.tsx
+        rm -f src/pages/_app.tsx
         mv src/pages/_app_graphql.tsx src/pages/_app.tsx
 
         # add graphql endpoint

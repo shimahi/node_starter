@@ -1,6 +1,6 @@
 import { Layout } from 'components/layouts'
 
-export default function Index() {
+export const IndexTemplate = () => {
   return (
     <Layout>
       <article>Hello, Next!</article>
