@@ -52,7 +52,7 @@ git init &
 
 yarn add -D typescript esbuild eslint jest prettier \
   ts-jest glob \
-  eslint-{config-prettier,plugin-import,plugin-jest,plugin-prettier} \
+  eslint-{config-prettier,plugin-import,plugin-jest,plugin-prettier,config-airbnb-base} \
   @types/{node,jest} @typescript-eslint/eslint-plugin @typescript-eslint/parser husky
 
 ## write README
