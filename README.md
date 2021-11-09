@@ -95,9 +95,3 @@ $ yarn dev # → http://localhost:3000
 # graphql-codegen実行
 $ yarn codegen
 ```
-
-### その他
-環境変数ファイル `.envrc` の更新を行った場合、都度direnvを読み直してください。
-```
-$ direnv allow
-```

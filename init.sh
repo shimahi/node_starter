@@ -43,7 +43,7 @@ dist/*
 yarn-error.log
 .DS_Store
 .vscode
-.envrc
+.env
 src/types/graphql.ts
 .next
 ' >>.gitignore
@@ -115,8 +115,8 @@ case $ANS in
         mv src/pages/_app_graphql.tsx src/pages/_app.tsx
 
         # add graphql endpoint
-        echo "export GRAPHQL_ENDPOINT=http://localhost:3000/api/graphql
-" >>.envrc
+        echo "GRAPHQL_ENDPOINT=http://localhost:3000/api/graphql
+" >>.env
         npx npm-add-script -k codegen -v "graphql-codegen"
         ;;
       * ) # GraphQLを使わない場合

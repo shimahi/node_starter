@@ -33,15 +33,16 @@ module.exports = {
     '@typescript-eslint/prefer-interface': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/no-unused-vars': [
-      'error',
+      'warn',
       {
         varsIgnorePattern: '_',
         argsIgnorePattern: '^_',
       },
     ],
     '@typescript-eslint/naming-convention': [
-      'error',
+      'warn',
       {
         selector: 'variable',
         format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
@@ -54,6 +55,15 @@ module.exports = {
       {
         selector: 'typeLike',
         format: ['PascalCase'],
+      },
+    ],
+    '@typescript-eslint/ban-types': [
+      'error',
+      {
+        extendDefaults: true,
+        types: {
+          '{}': false,
+        },
       },
     ],
     //prettier
@@ -98,6 +108,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'react/jsx-one-expression-per-line': 'off',
     'react/require-default-props': 'off',
+    'react/prop-types': 'off',
     // react-hooks
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'off',
