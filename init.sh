@@ -31,9 +31,6 @@ initialDirVal=$(basename ${initialDir})
 mv ../${initialDirVal} ../"$1"
 cd ../"$1"
 
-## allow env files
-direnv allow
-
 ## setting git
 rm -rf .git
 rm -f .gitignore README.md
@@ -131,6 +128,3 @@ esac
 
 ## remove this script
 find ./ -name "init.sh" | xargs rm
-
-## allow env files
-direnv allow

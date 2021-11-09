@@ -8,22 +8,11 @@ TypeScript, ESLint, prettier, huskyを使用し、以下のNode.js環境を作�
 2. React(Next.js)によるWeb開発環境
 3. 3に加えてApollo Clientとgraphql-codegenを利用するGraphQLクライアント環境
 
-パッケージマネージャはYarn、ビルドツールにはesbuildを用いています(next.jsの場合はwebpackと併用)
-
-環境変数の使用に[direnv](https://github.com/direnv/direnv)を用いるので、事前にインストールしてください。
-
-```
-$ brew install direnv
-$ cat >> ~/.zshrc
-eval "$(direnv hook zsh)"
-^C
-$ source ~/.zshrc
-```
+パッケージマネージャはYarn、ビルドツールにはesbuildを用いています(next.jsの場合はwebpack)
 
 動作環境
 Node.js `^15.5.1`
 Yarn `^1.22.4`
-[direnv](https://github.com/direnv/direnv) `2.27.0`
 
 
 ### 使用方法
