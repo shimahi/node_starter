@@ -2,10 +2,10 @@
 
 Node.jsアプリの環境構築を行うシェルスクリプトです。
 
-TypeScript, ESLint, prettier, huskyを使用し、以下のNode.js環境を作ることができます。
+TypeScript, ESLint, prettier, huskyを使用し、JS環境を作ることができます。
 
 1. Node.jsでのバッチ処理開発環境
-2. React(Next.js)によるWeb開発環境
+2. Next.jsによるWeb開発環境
 3. 3に加えてApollo Clientとgraphql-codegenを利用するGraphQLクライアント環境
 
 パッケージマネージャはYarn、ビルドツールにはesbuildを用いています(next.jsの場合はwebpack)
@@ -46,25 +46,6 @@ $ yarn watch
 ```
 # 実行
 node dist/index.js
-```
-
-
-### 2. React開発
-`src/index.tsx` をエントリーポイントとしてReactのコードを記述し、esbuildを用いてビルドします。ビルドが行われると、`dist/`下にindex.jsが出力されるので、予め用意してある `dist/index.html` をブラウズすることでアプリが確認できます。
-
-Live Serverなどでローカルサーバを立てつつ監視ビルドを行うことで、HMRライクな開発が可能となります。
-
-こちらは練習用のセットアップなので、本格的にフロントエンド環境を整える場合は 3 のNext.jsを構築してください。
-
-```
-# ビルド
-$ yarn build
-
-# 監視ビルド
-$ yarn watch
-
-# アプリを開く 
-$ open dist/index.html  #（或いは、ローカルのhttpサーバを立ててください。）
 ```
 
 
